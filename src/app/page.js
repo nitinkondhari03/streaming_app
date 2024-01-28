@@ -39,6 +39,7 @@ export default function Home() {
       let data = await res.json();
       let serchin_data = data.items;
       setVideodata(serchin_data);
+      
       setsearchinvideo("");
     } catch (err) {
       console.log("err:", err);
@@ -71,7 +72,7 @@ export default function Home() {
       <div className="grid grid-cols-1 gap-4 w-5/6 m-auto md:grid-cols-2 lg:grid-cols-4">
         {videodata &&
           videodata.map((el) => (
-            <div key={el.id} onClick={() => router.push(`videoplay/${el.id}`)}>
+            <div key={el.id} onClick={() => router.push(`videoplay/${el.id.videoId || el.id}`)}>
               <img src={el.snippet.thumbnails.high.url} />
               <h4 className="text-black-600/100">{el.snippet.title}</h4>
             </div>
